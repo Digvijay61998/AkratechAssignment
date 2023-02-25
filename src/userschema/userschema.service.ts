@@ -17,10 +17,10 @@ export class UserschemaService {
   ) { }
   
 
-  async create(CreateUserschemaDto: CreateUserschemaDto) {
+  async create(createUserschemaDto: CreateUserschemaDto) {
     try {
       const user = await this.userModel.create({
-        ...CreateUserschemaDto,
+        ...createUserschemaDto,
       });
       return user;
     } catch (error) {
@@ -55,6 +55,35 @@ export class UserschemaService {
     } catch (error) {
       this.logger.error(
         `Error while getting data : ${error.message}`
+      );
+      throw new HttpException(error.message, error.status || 500);
+    }
+  }
+
+
+  async update(id: string, updateUserschemaDto: UpdateUserschemaDto) {
+    try {
+      const user = await this.userModel.findByIdAndUpdate(
+        id,
+        updateUserschemaDto,
+        { new: true },
+      );
+      return user;
+    } catch (error) {
+      this.logger.error(
+        `Error while updating user with id ${id} : ${error.message}`,
+      );
+      throw new HttpException(error.message, error.status || 500);
+    }
+  }
+
+  async remove(id: string) {
+    try {
+      const user = await this.userModel.findByIdAndDelete(id);
+      return user;
+    } catch (error) {
+      this.logger.error(
+        `Error while deleting user with id ${id} : ${error.message}`,
       );
       throw new HttpException(error.message, error.status || 500);
     }

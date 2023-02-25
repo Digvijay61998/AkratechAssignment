@@ -47,12 +47,12 @@ async function bootstrap() {
   const port = configService.get("port");
   app.use(express.json({ limit: "50mb" }));
   const options = new DocumentBuilder()
-  .setTitle("test")
-  .setDescription("test assignment Akratech")
+  .setTitle("iNeuron")
+  .setDescription("test assignment iNeuron")
   .setVersion("1.0.0")
   // .addBearerAuth()
   .setContact("Help", "", "digvijaykadam61998.com")
-  .setTitle("Akratech assignment API")
+  .setTitle("iNeuron assignment API")
   .build();
 
 const document = SwaggerModule.createDocument(app, options);

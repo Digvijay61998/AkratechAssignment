@@ -13,7 +13,8 @@ import { UserschemaModule } from './userschema/userschema.module';
       isGlobal: true,
     }),
     DatabaseModule,
-    UserschemaModule
+    UserschemaModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

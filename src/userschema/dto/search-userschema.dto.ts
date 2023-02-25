@@ -1,7 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsNumber, IsOptional, Min } from 'class-validator';
-import { ObjectId } from 'mongoose';
 
 export class userQueryParams {
   @IsOptional()

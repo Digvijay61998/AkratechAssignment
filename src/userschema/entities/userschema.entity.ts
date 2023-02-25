@@ -9,10 +9,15 @@ export interface VisitorInfo {
 export type userDocument = UsersDetails & mongoose.Document;
 
 @Schema({
-  timestamps: true,
   virtuals: true,
+  timestamps: true,
   toJSON: {
     virtuals: true,
+    transform: (doc, ret) => {
+      delete ret._id;
+      delete ret.__v;
+      delete ret.views;
+    },
   },
 })
 export class UsersDetails {
@@ -20,7 +25,7 @@ export class UsersDetails {
   name: string;
 
   @Prop({ required: true })
-    phone: number; 
+    phone: string; 
 
     @Prop({ required: true ,unique: true, })
     email: string;
